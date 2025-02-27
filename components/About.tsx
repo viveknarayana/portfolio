@@ -29,8 +29,7 @@ export default function About() {
           My experience also includes{" "}
           <span className="text-white">machine learning applications</span> and{" "}
           <span className="text-white">automation tools</span> that streamline
-          workflows, saving time and improving efficiency in data processing, 
-          system management, and user interactions.
+          workflows, saving time and improving efficiency in data processing, task automation, and decision-making.
         </p>
 
       </div>
