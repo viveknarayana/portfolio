@@ -10,18 +10,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://viveknarayana.com",
   },
-  title: "Vivek Narayana - Product Designer in AI, Web3, and Finance",
+  title: "Vivek Narayana - Dev",
   description:
-    "Vivek Narayana is a Product designer, developer & founder.",
+    "Vivek Narayana is a full-stack developer",
   keywords:
-    "Vivek Narayana, Product Designer, AI, Web3, Finance, User Experience, UI/UX Design, Design Systems, Front-end Development, Decentralized Finance, DeFi, Swoop Exchange, Vela Exchange, Stealth AI Startup, Technology, Innovation, Human-Centered Design",
+    "Vivek Narayana",
   openGraph: {
     locale: "en_US",
     siteName: "Vivek Narayana",
     type: "website",
     title: "Vivek Narayana",
     description:
-      "Vivek Narayana is a Product designer, developer & founder.",
+      "Vivek Narayana is a full-stack developer.",
     url: "https://viveknarayana.com",
   },
   twitter: {
