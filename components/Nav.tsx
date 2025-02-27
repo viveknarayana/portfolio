@@ -1,9 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Github, Linkedin } from "lucide-react";
-import { ModeToggle } from "./ui/toggle-mode";
 import useActiveSection from "@/hooks/useActiveSection";
+import FloatingObject from "./FloatingObject";
 
 type NavItem = {
   name: string;
@@ -54,8 +53,11 @@ export default function Nav() {
           Full-Stack and AI Developer
         </h2>
         <p className="text-lg lg:text-start text-muted-foreground">
-        I develop and improve web and AI applications to ensure efficiency and ease of use. My focus is on leveraging AI to create innovative solutions and designing web applications that offer real value and usability in everyday tasks.
+          I develop and improve web and AI applications to ensure efficiency and ease of use. My focus is on leveraging AI to create innovative solutions and designing web applications that offer real value and usability in everyday tasks.
         </p>
+        
+        {/* Add the floating 3D object here */}
+        <FloatingObject />
       </div>
       <nav className="lg:flex hidden">
         <ul className="flex flex-col w-max text-start gap-6 uppercase text-xs font-medium">
