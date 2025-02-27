@@ -27,7 +27,7 @@ const jobProjects = [
     link: "https://github.com/Codelab-Davis/volare",
   },
   {
-    imagePath: "/billy.png",
+    imagePath: "/portfolio/billy.png",
     title: "BillyAI - Open-Source Social Media Platform",
     description:
       "Developed an AI-powered social media platform enabling users to engage in political discussions. Worked with a 4-person team to integrate PineconeDB for vector embeddings and used OpenAI/You.com API for summarizing legislation.",
