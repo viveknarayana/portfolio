@@ -12,7 +12,7 @@ import { MoveUpRight } from "lucide-react";
 
 const jobProjects = [
   {
-    imagePath: "/portfolio/volare.png",
+    imagePath: "/volare.png",
     title: "Volare - AI Powered Interview Preparation App",
     description:
       "Developed an AI-powered behavioral interview simulation feature using GPT-4, integrating facial expression and body language analysis with HumeAI. The app tracks performance using a React dashboard and stores results in Supabase.",
@@ -27,7 +27,7 @@ const jobProjects = [
     link: "https://github.com/Codelab-Davis/volare",
   },
   {
-    imagePath: "/portfolio/billy.png",
+    imagePath: "/billy.png",
     title: "BillyAI - Open-Source Social Media Platform",
     description:
       "Developed an AI-powered social media platform enabling users to engage in political discussions. Worked with a 4-person team to integrate PineconeDB for vector embeddings and used OpenAI/You.com API for summarizing legislation.",
@@ -42,7 +42,7 @@ const jobProjects = [
     link: "https://billy-ai.vercel.app/",
   },
   {
-    imagePath: "/portfolio/poshify.png",
+    imagePath: "/poshify.png",
     title: "Poshify - Artificial Intelligence Fashion Website",
     description:
       "Developed a fashion website using OpenCV, Flask, and fuzzy logic to dynamically curate outfit schedules. Hosted on AWS with EC2, S3, and RDS using MySQL.",
@@ -57,7 +57,7 @@ const jobProjects = [
     link: "https://github.com/viveknarayana/Poshify",
   },
   {
-    imagePath: "/portfolio/ballVision.png",
+    imagePath: "/ballVision.png",
     title: "BallVision - Computer Vision Soccer Analysis",
     description:
       "Applied OpenCV and YOLO to track ball possessions, player speeds, and distances in soccer clips. Utilized K-Means clustering to differentiate team colors and generate detailed player metrics.",
@@ -65,7 +65,7 @@ const jobProjects = [
     link: "https://github.com/viveknarayana/BallVision",
   },
   {
-    imagePath: "/portfolio/cryptoAutomation.png",
+    imagePath: "/cryptoAutomation.png",
     title: "Crypto Automation",
     description:
       "Developed an algorithmic trading system that executes buy and sell orders for ETH, BTC, and LTC based on a custom strategy. The system automates trade execution and real-time order placement, sending instant notifications via a Discord bot.",
@@ -77,7 +77,7 @@ const jobProjects = [
     link: "https://github.com/viveknarayana/Crypto-Automation",
   },
   {
-    "imagePath": "/portfolio/calcCalculator.jpeg",
+    "imagePath": "/calcCalculator.jpeg",
     "title": "CalcFix Calculator",
     "description": 
       "Built a comprehensive calculus calculator capable of solving problems from Calculus I and II, including derivatives, integrals, limits, and series expansions. Developed during a hackathon (2/24 - 2/26), the project features a Flask backend for computation and a frontend using HTML, CSS, and JavaScript for an interactive user experience.",
