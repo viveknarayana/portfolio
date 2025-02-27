@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   title: "Vivek Narayana - Dev",
   description:
-    "Vivek Narayana is a full-stack developer",
+    "Vivek Narayana is a developer.",
   keywords:
     "Vivek Narayana",
   openGraph: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Vivek Narayana",
     description:
-      "Vivek Narayana is a full-stack developer.",
+      "Vivek Narayana is a full-stack dev.",
     url: "https://viveknarayana.com",
   },
   twitter: {
