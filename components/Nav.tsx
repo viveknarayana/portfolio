@@ -54,7 +54,7 @@ export default function Nav() {
           Full-Stack and AI Developer
         </h2>
         <p className="text-lg lg:text-start text-muted-foreground">
-        I develop and improve web and AI applications, ensuring they are efficient and easy to use. My focus is on building scalable systems, optimizing performance, and creating seamless user experiences.
+        I develop and improve web and AI applications to ensure efficiency and ease of use. My focus is on leveraging AI to create innovative solutions and designing web applications that offer real value and usability in everyday tasks.
         </p>
       </div>
       <nav className="lg:flex hidden">
