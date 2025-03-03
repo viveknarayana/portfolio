@@ -81,7 +81,7 @@ const FloatingObject = () => {
   return (
     <div 
       ref={containerRef} 
-      className="w-[150%] h-[480px] -ml-8 my-4 lg:-ml-24 lg:w-[140%]"
+      className="w-[150%] h-[250px] -ml-8 my-4 lg:-ml-24 lg:w-[140%]"
       style={{ 
         display: 'flex',
         justifyContent: 'center',
