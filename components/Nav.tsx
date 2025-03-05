@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "lucide-react";
 import useActiveSection from "@/hooks/useActiveSection";
-import FloatingObject from "./FloatingObject";
+import FloatingObject from "./StarsBackground";
 
 type NavItem = {
   name: string;
@@ -57,7 +57,7 @@ export default function Nav() {
         </p>
         
         {/* Add the floating 3D object here */}
-        <FloatingObject />
+        
       </div>
       <nav className="lg:flex hidden">
         <ul className="flex flex-col w-max text-start gap-6 uppercase text-xs font-medium">
