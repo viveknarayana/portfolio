@@ -21,8 +21,8 @@ const jobProjects = [
       "FastAPI",
       "Roboflow",
       "Gemini",
-      "OpenCV",
-      "Supervision"
+      "Supabase",
+      "Cerebras",
     ],
     link: "https://github.com/viveknarayana/firehack",
   },
