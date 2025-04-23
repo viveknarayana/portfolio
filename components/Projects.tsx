@@ -12,10 +12,25 @@ import { MoveUpRight } from "lucide-react";
 
 const jobProjects = [
   {
+    imagePath: "/firewatch.png",
+    title: "Firewatch - AI-Powered Fire Detection and Emergency Response",
+    description:
+      "Built an AI system that detects fires in real-time from surveillance footage using Roboflow, analyzes severity with Gemini, and autonomously contacts emergency services through an AI agent. Includes a FastAPI backend, real-time annotation, and alert logic.",
+    skills: [
+      "Python",
+      "FastAPI",
+      "Roboflow",
+      "Gemini",
+      "OpenCV",
+      "Supervision"
+    ],
+    link: "https://github.com/viveknarayana/firehack",
+  },
+  {
     imagePath: "/volare.png",
     title: "Volare - AI Powered Interview Preparation App",
     description:
-      "Developed an AI-powered behavioral interview simulation feature using GPT-4, integrating facial expression and body language analysis with HumeAI. The app tracks performance using a React dashboard and stores results in Supabase.",
+      "Developed an AI-powered behavioral interview simulation feature using Groq, integrating facial expression and body language analysis with HumeAI. The app tracks performance using a React dashboard and stores results in Supabase.",
     skills: [
       "Python",
       "JavaScript",
