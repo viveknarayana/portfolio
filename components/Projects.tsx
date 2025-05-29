@@ -39,7 +39,7 @@ const jobProjects = [
       "Supabase",
       "HumeAI",
     ],
-    link: "https://github.com/Codelab-Davis/volare",
+    link: "https://volare.aksads.tech/",
   },
   {
     imagePath: "/billy.png",
