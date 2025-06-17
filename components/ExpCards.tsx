@@ -12,6 +12,23 @@ import { MoveRight } from "lucide-react";
 
 const jobPositions = [
   {
+    timeline: "June 2024 – Present",
+    currentPosition: "Application Development Intern",
+    place: "Centene",
+    previousPositions: [""],
+    description:
+      "Leading migration of services written in Go to AWS Lambda, while managing infrastructure with EC2 and S3 for scalable deployment.",
+    skills: [
+      "Go",
+      "AWS Lambda",
+      "EC2",
+      "S3",
+      "Python",
+      "JavaScript",
+      "Infrastructure Management",
+    ],
+  },
+  {
     timeline: "July 2023 – Aug. 2024",
     currentPosition: "Software Engineering Intern",
     place: "Mytonomy",
