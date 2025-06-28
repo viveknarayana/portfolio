@@ -27,6 +27,23 @@ const jobProjects = [
     link: "https://github.com/viveknarayana/firehack",
   },
   {
+    imagePath: "/terminal-agent.png",
+    title: "Terminal Agent - AI-Powered Code Execution Platform",
+    description:
+      "Developed a sophisticated AI agentic loop that executes code in isolated Docker containers with real-time tool calling capabilities. Features MCP (Model Context Protocol) integration for GitHub API access and streaming response handling with comprehensive logging and error management.",
+    skills: [
+      "Python",
+      "Docker",
+      "Groq API",
+      "MCP Protocol",
+      "Rich TUI",
+      "Textual",
+      "Async/Await",
+      "Tool Calling",
+    ],
+    link: "https://github.com/viveknarayana/terminal-agent",
+  },
+  {
     imagePath: "/volare.png",
     title: "Volare - AI Powered Interview Preparation App",
     description: 
