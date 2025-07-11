@@ -12,20 +12,41 @@ import { MoveRight } from "lucide-react";
 
 const jobPositions = [
   {
-    timeline: "June 2025 – Present",
-    currentPosition: "Application Development Intern",
-    place: "Centene",
+    timeline: "July 2025 – Present",
+    currentPosition: "AI Infrastructure Researcher",
+    place: "DECAL Lab, University of California, Davis",
     previousPositions: [""],
     description:
-      "Leading migration of services written in Go to AWS Lambda, while managing infrastructure with EC2 and S3 for scalable deployment.",
+      "Developing a Flutter (Dart) safety app for intelligent emergency support during outdoor trips. Researching CAG/RAG infrastructure and multi-agent architectures using AWS Lambda-based AI agents. Building scalable backend services using the AWS Amplify stack (DynamoDB, Cognito, SNS, SES, AppSync).",
+    skills: [
+      "Flutter",
+      "Dart",
+      "AWS Lambda",
+      "CAG/RAG",
+      "Multi-Agent Architecture",
+      "AWS Amplify",
+      "DynamoDB",
+      "Cognito",
+      "SNS",
+      "SES",
+      "AppSync",
+    ],
+  },
+  {
+    timeline: "June 2025 – Present",
+    currentPosition: "Application Development Intern",
+    place: "Centene Corporation",
+    previousPositions: [""],
+    description:
+      "Spearheading the migration of Go-based microservices to AWS Lambda using Terraform and S3. Enhancing customer-facing front-end UI with React and integrating MongoDB to improve claim data accessibility. Collaborated on optimizing cloud resource usage to improve application performance and reduce costs.",
     skills: [
       "Go",
       "AWS Lambda",
-      "EC2",
+      "Terraform",
       "S3",
-      "Python",
-      "JavaScript",
-      "Infrastructure Management",
+      "React",
+      "MongoDB",
+      "Cloud Optimization",
     ],
   },
   {
