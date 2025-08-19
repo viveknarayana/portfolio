@@ -47,7 +47,7 @@ export default function Nav() {
         <div className="w-full flex lg:items-center lg:justify-start">
         </div>
         <h1 className="text-[42px] font-bold lg:text-start">
-          Hi, I&#39;m Vivek 👋
+          Hi, I&#39;m Vivek
         </h1>
         <h2 className="text-xl lg:text-start">
           Full-Stack and AI Developer
