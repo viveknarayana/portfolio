@@ -13,6 +13,23 @@ import { MoveUpRight } from "lucide-react";
 const jobProjects = [
   {
     imagePath: "/firewatch.png",
+    title: "Redian - LLM Agent Security Testing Framework",
+    description:
+      "Built a modular Python framework for automating red teaming and security evaluation of LLM agents using Google Gemini. Features stateful multi-turn tool interactions via LangGraph, dynamic prompt injection attacks with meta-LLM payload generation, and automated evaluation using LLM-based judges to assess agent vulnerabilities and logical consistency.",
+    skills: [
+      "Python",
+      "LangGraph",
+      "Google Gemini",
+      "MCP Protocol",
+      "Prompt Injection",
+      "LLM Security",
+      "Async/Await",
+      "Docker",
+    ],
+    link: "https://github.com/viveknarayana/Redian",
+  },
+  {
+    imagePath: "/firewatch.png",
     title: "Firewatch - AI-Powered Fire Detection and Emergency Response",
     description:
       "Built an AI system that detects fires in real-time from surveillance footage using Roboflow, analyzes severity with Gemini, and autonomously contacts emergency services through a custom AI agent. Includes a FastAPI backend, real-time annotation, and alert logic.",
