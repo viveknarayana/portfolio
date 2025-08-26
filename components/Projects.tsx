@@ -12,7 +12,7 @@ import { MoveUpRight } from "lucide-react";
 
 const jobProjects = [
   {
-    imagePath: "/firewatch.png",
+    imagePath: "/redian.png",
     title: "Redian - LLM Agent Security Testing Framework",
     description:
       "Built a modular Python framework for automating red teaming and security evaluation of LLM agents using Google Gemini. Features stateful multi-turn tool interactions via LangGraph, dynamic prompt injection attacks with meta-LLM payload generation, and automated evaluation using LLM-based judges to assess agent vulnerabilities and logical consistency.",
