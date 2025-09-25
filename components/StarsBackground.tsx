@@ -31,7 +31,7 @@ const StarsBackground: React.FC = () => {
     const stars: THREE.Mesh[] = [];
     for (let z = -1000; z < 1000; z += 30) {  // Adjusted spacing
       const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-      const material = new THREE.MeshBasicMaterial({ 
+      const material = new THREE.MeshStandardMaterial({ 
         color: new THREE.Color().setHSL(0.75, 0.6, Math.random() * 0.3 + 0.8), // Brighter purple-tinted stars
         transparent: true,
         opacity: Math.random() * 0.4 + 0.7,  // Higher opacity for brightness
@@ -67,7 +67,9 @@ const StarsBackground: React.FC = () => {
 
           // Add twinkling effect
           const twinkle = Math.sin(time * 2 + i * 0.1) * 0.3 + 0.7;
-          star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
+          if (star.material instanceof THREE.MeshStandardMaterial) {
+            star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
+          }
           
           // Add subtle scale pulsing for shine effect
           const scale = 1 + Math.sin(time * 3 + i * 0.2) * 0.1;
@@ -106,8 +108,9 @@ const StarsBackground: React.FC = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       
-      if (containerRef.current && sceneRef.current) {
-        containerRef.current.removeChild(sceneRef.current.renderer.domElement);
+      const container = containerRef.current;
+      if (container && sceneRef.current) {
+        container.removeChild(sceneRef.current.renderer.domElement);
         sceneRef.current.renderer.dispose();
       }
     };
