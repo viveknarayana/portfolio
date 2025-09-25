@@ -12,6 +12,18 @@ import { MoveRight } from "lucide-react";
 
 const jobPositions = [
   {
+    timeline: "Incoming Fall 2025",
+    currentPosition: "Software Engineer Intern",
+    place: "Eudia",
+    previousPositions: [""],
+    description: "",
+    skills: [
+      "AI",
+      "Agentic Systems",
+      "Document Processing",
+    ],
+  },
+  {
     timeline: "July 2025 – Sep. 2025",
     currentPosition: "AI Infrastructure Researcher",
     place: "DECAL Lab, University of California, Davis",
