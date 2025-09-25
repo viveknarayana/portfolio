@@ -14,10 +14,21 @@ const useActiveSection = (sectionIds: string[]): string => {
       const isScrollingDown = currentScrollY > lastScrollY.current;
       lastScrollY.current = currentScrollY;
       
+      // Check if we're near the bottom of the page
+      const documentHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const isNearBottom = currentScrollY + windowHeight >= documentHeight - 100; // 100px tolerance
+      
       // If we have visible sections, determine which one to make active based on scroll direction
       if (visibleSections.size > 0) {
         // Convert to array to access by index
         const sections = Array.from(visibleSections);
+        
+        // If we're near the bottom, prioritize the last section (contact)
+        if (isNearBottom && sectionIds.includes('contact')) {
+          setActiveSection('contact');
+          return;
+        }
         
         // When scrolling up, prefer the section that appears earlier in the sectionIds array
         // When scrolling down, prefer the section that appears later
@@ -52,8 +63,8 @@ const useActiveSection = (sectionIds: string[]): string => {
         });
       },
       { 
-        threshold: 0.3, // Use a middle threshold that works for both directions
-        rootMargin: "-20px 0px -20px 0px" 
+        threshold: 0.1, // Lower threshold to catch smaller sections
+        rootMargin: "-10px 0px -50px 0px" 
       }
     );
 
