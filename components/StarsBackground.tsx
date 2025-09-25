@@ -31,11 +31,10 @@ const StarsBackground: React.FC = () => {
     const stars: THREE.Mesh[] = [];
     for (let z = -1000; z < 1000; z += 30) {  // Adjusted spacing
       const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-      const material = new THREE.MeshStandardMaterial({ 
+      const material = new THREE.MeshBasicMaterial({ 
         color: new THREE.Color().setHSL(0.75, 0.6, Math.random() * 0.3 + 0.8), // Brighter purple-tinted stars
         transparent: true,
-        opacity: Math.random() * 0.4 + 0.7,  // Higher opacity for brightness
-        emissive: new THREE.Color().setHSL(0.75, 0.4, 0.2) // Add subtle purple glow
+        opacity: Math.random() * 0.4 + 0.7  // Higher opacity for brightness
       });
       const sphere = new THREE.Mesh(geometry, material);
 
@@ -67,9 +66,7 @@ const StarsBackground: React.FC = () => {
 
           // Add twinkling effect
           const twinkle = Math.sin(time * 2 + i * 0.1) * 0.3 + 0.7;
-          if (star.material instanceof THREE.MeshStandardMaterial) {
-            star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
-          }
+          star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
           
           // Add subtle scale pulsing for shine effect
           const scale = 1 + Math.sin(time * 3 + i * 0.2) * 0.1;
