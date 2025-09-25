@@ -12,7 +12,7 @@ import { MoveRight } from "lucide-react";
 
 const jobPositions = [
   {
-    timeline: "July 2025 – Present",
+    timeline: "July 2025 – Sep. 2025",
     currentPosition: "AI Infrastructure Researcher",
     place: "DECAL Lab, University of California, Davis",
     previousPositions: [""],
@@ -33,7 +33,7 @@ const jobPositions = [
     ],
   },
   {
-    timeline: "June 2025 – Present",
+    timeline: "June 2025 – Sep. 2025",
     currentPosition: "Application Development Intern",
     place: "Centene Corporation",
     previousPositions: [""],
@@ -97,16 +97,14 @@ export default function ExpCard() {
         {jobPositions.map((job, index) => (
           <Card
             key={index}
-            className="lg:p-6 mb-4 flex flex-col lg:flex-row w-full min-h-fit gap-0 lg:gap-5 border-transparent hover:border dark:lg:hover:border-t-blue-900 dark:lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(59,130,246,0.1)] lg:hover:drop-shadow-lg lg:hover:bg-slate-100/50 lg:hover:border-t-blue-200"
+            className="lg:p-6 mb-4 w-full border-transparent hover:border dark:lg:hover:border-t-blue-900 dark:lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(59,130,246,0.1)] lg:hover:drop-shadow-lg lg:hover:bg-slate-100/50 lg:hover:border-t-blue-200"
           >
-            <CardHeader className="h-full w-full p-0">
-              <CardTitle className="text-base text-slate-400 whitespace-nowrap">
-                {job.timeline}
-              </CardTitle>
-            </CardHeader>
             <CardContent className="flex flex-col p-0">
               <p className="text-foreground font-bold">
                 {job.currentPosition} • {job.place}
+              </p>
+              <p className="text-base text-slate-400 mb-3">
+                {job.timeline}
               </p>
               {job.previousPositions.map((position, index) => (
                 <p key={index} className="text-slate-400 text-sm font-bold">

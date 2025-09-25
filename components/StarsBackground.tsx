@@ -66,7 +66,9 @@ const StarsBackground: React.FC = () => {
 
           // Add twinkling effect
           const twinkle = Math.sin(time * 2 + i * 0.1) * 0.3 + 0.7;
-          star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
+          if (star.material instanceof THREE.MeshBasicMaterial) {
+            star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
+          }
           
           // Add subtle scale pulsing for shine effect
           const scale = 1 + Math.sin(time * 3 + i * 0.2) * 0.1;
