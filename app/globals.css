@@ -7,18 +7,18 @@
     @apply fixed inset-0 pointer-events-none;
     background-image: radial-gradient(
       circle at var(--mouse-x) var(--mouse-y),
-      rgba(63, 81, 181, 0.3) 0%,
-      rgba(63, 81, 181, 0.15) 30%,
-      rgba(63, 81, 181, 0) 50%
+      rgba(147, 51, 234, 0.15) 0%,
+      rgba(147, 51, 234, 0.08) 30%,
+      rgba(147, 51, 234, 0) 50%
     );
 
     /* Media query for touch devices */
     @media (hover: none) and (pointer: coarse) {
       background-image: radial-gradient(
         circle at top left,
-        rgba(63, 81, 181, 0.3) 0%,
-        rgba(63, 81, 181, 0.15) 30%,
-        rgba(63, 81, 181, 0) 50%
+        rgba(147, 51, 234, 0.15) 0%,
+        rgba(147, 51, 234, 0.08) 30%,
+        rgba(147, 51, 234, 0) 50%
       );
     }
   }
@@ -49,25 +49,25 @@
   }
 
   .dark {
-    --background: 222.2 50% 10%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 50% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 50% 10%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 0 0% 5%;
+    --foreground: 270 100% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 270 100% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 270 100% 95%;
+    --primary: 270 60% 60%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 270 30% 15%;
+    --secondary-foreground: 270 100% 95%;
+    --muted: 270 30% 15%;
+    --muted-foreground: 270 20% 70%;
+    --accent: 270 30% 15%;
+    --accent-foreground: 270 100% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --border: 270 30% 15%;
+    --input: 270 30% 15%;
+    --ring: 270 100% 70%;
   }
 }
 
@@ -94,22 +94,22 @@
 .group:focus-within .nav-indicator {
   width: 4rem;
   height: 2px;
-  background-color: #0d1426;
+  background-color: #9333ea;
 }
 
 .nav-indicator.active,
 .group .nav-indicator.active {
   width: 4rem;
   height: 2px;
-  background-color: #0d1426;
+  background-color: #9333ea;
 }
 
 .dark .group:hover .nav-indicator,
 .dark .group:focus-within .nav-indicator {
-  background-color: #e2e8f0;
+  background-color: #a855f7;
 }
 
 .dark .nav-indicator.active,
 .dark .group .nav-indicator.active {
-  background-color: #e2e8f0;
+  background-color: #a855f7;
 }

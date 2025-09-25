@@ -16,6 +16,7 @@ const StarsBackground: React.FC = () => {
 
     // Initialize Three.js objects
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0a0a); // Very dark background
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.z = 5;
 
@@ -31,9 +32,10 @@ const StarsBackground: React.FC = () => {
     for (let z = -1000; z < 1000; z += 30) {  // Adjusted spacing
       const geometry = new THREE.SphereGeometry(0.5, 32, 32);
       const material = new THREE.MeshBasicMaterial({ 
-        color: 0xffffff,
+        color: new THREE.Color().setHSL(0.75, 0.6, Math.random() * 0.3 + 0.8), // Brighter purple-tinted stars
         transparent: true,
-        opacity: Math.random() * 0.5 + 0.3  // Varied opacity for depth
+        opacity: Math.random() * 0.4 + 0.7,  // Higher opacity for brightness
+        emissive: new THREE.Color().setHSL(0.75, 0.4, 0.2) // Add subtle purple glow
       });
       const sphere = new THREE.Mesh(geometry, material);
 
@@ -57,9 +59,19 @@ const StarsBackground: React.FC = () => {
       requestAnimationFrame(animate);
 
       if (sceneRef.current) {
-        // Move stars (moderately paced)
+        const time = Date.now() * 0.001; // Time in seconds
+        
+        // Move stars and add twinkling effect
         sceneRef.current.stars.forEach((star, i) => {
           star.position.z += i / 25;  // Adjusted speed (faster than last version, slower than original)
+
+          // Add twinkling effect
+          const twinkle = Math.sin(time * 2 + i * 0.1) * 0.3 + 0.7;
+          star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
+          
+          // Add subtle scale pulsing for shine effect
+          const scale = 1 + Math.sin(time * 3 + i * 0.2) * 0.1;
+          star.scale.setScalar(scale);
 
           // Reset star position if it moves too far
           if (star.position.z > 1000) {
