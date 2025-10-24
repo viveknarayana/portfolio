@@ -12,15 +12,17 @@ import { MoveRight } from "lucide-react";
 
 const jobPositions = [
   {
-    timeline: "Incoming Fall 2025",
+    timeline: "Oct 2025 - Present",
     currentPosition: "Software Engineer Intern",
     place: "Eudia",
     previousPositions: [""],
     description: "Building company-wide analytics on LLM and model usage, leveraging Spark, Apache Iceberg, and Azure Blob Storage to efficiently track user activity and message trends",
     skills: [
-      "AI",
-      "Agentic Systems",
-      "Document Processing",
+      "Spark",
+      "Apache Iceberg",
+      "Azure Blob Storage",
+      "LLM Analytics",
+      "Data Engineering",
     ],
   },
   {
@@ -29,19 +31,18 @@ const jobPositions = [
     place: "DECAL Lab, University of California, Davis",
     previousPositions: [""],
     description:
-      "Developing a Flutter (Dart) safety app for intelligent emergency support during outdoor trips. Researching CAG/RAG infrastructure and multi-agent architectures using AWS Lambda-based AI agents. Building scalable backend services using the AWS Amplify stack (DynamoDB, Cognito, SNS, SES, AppSync).",
+      "Collaborating with a startup to develop an intelligent assistant and safety app for the outdoors using Flutter. Developing modular RAG pipelines and multi-agent AI architectures implemented with AWS Bedrock. Optimized backend cloud infrastructure by cutting DynamoDB read latency by 90% with Redis caching.",
     skills: [
       "Flutter",
       "Dart",
-      "AWS Lambda",
-      "CAG/RAG",
+      "AWS Bedrock",
+      "RAG Pipelines",
       "Multi-Agent Architecture",
-      "AWS Amplify",
       "DynamoDB",
-      "Cognito",
-      "SNS",
-      "SES",
-      "AppSync",
+      "Redis",
+      "Cloud Optimization",
+      "AI Safety",
+      "Outdoor Technology",
     ],
   },
   {
