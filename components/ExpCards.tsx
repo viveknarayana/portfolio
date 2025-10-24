@@ -16,7 +16,7 @@ const jobPositions = [
     currentPosition: "Software Engineer Intern",
     place: "Eudia",
     previousPositions: [""],
-    description: "",
+    description: "Building company-wide analytics on LLM and model usage, leveraging Spark, Apache Iceberg, and Azure Blob Storage to efficiently track user activity and message trends",
     skills: [
       "AI",
       "Agentic Systems",

@@ -11,13 +11,13 @@ export default function About() {
       </div>
       <div className="flex flex-col gap-4">
         <p className="text-start text-muted-foreground lg:px-6">
-          I’m a full-stack developer with a strong foundation in building{" "}
+          I'm a full-stack developer with a strong foundation in building{" "}
           <span className="text-white">scalable web applications</span> and{" "}
           <span className="text-white">backend systems</span>.
           My experience spans across front-end development, backend architecture, and building AI-driven systems that enhance functionality and user interaction.
         </p>
         <p className="text-start text-muted-foreground lg:px-6">
-          I’ve worked on{" "}
+          I've worked on{" "}
           <span className="text-white">large-scale web platforms</span>,
           implementing APIs, and integrating databases. Whether it's designing intuitive UIs, developing
           robust backends, or handling{" "}
