@@ -16,9 +16,11 @@ const jobPositions = [
     currentPosition: "Software Engineer Intern",
     place: "Eudia",
     previousPositions: [""],
-    description: "Building company-wide analytics on LLM and model usage, leveraging Spark, Apache Iceberg, and Azure Blob Storage to efficiently track user activity and message trends",
+    description:
+      "Building company-wide analytics on LLM and model usage, leveraging Trino, Redis, Apache Iceberg, and Azure Blob Storage to efficiently track user activity and message trends",
     skills: [
-      "Spark",
+      "Trino",
+      "Redis",
       "Apache Iceberg",
       "Azure Blob Storage",
       "LLM Analytics",
