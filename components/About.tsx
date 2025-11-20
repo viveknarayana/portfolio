@@ -27,7 +27,7 @@ export default function About() {
         </p>
         <p className="text-start text-muted-foreground lg:px-6">
           My experience also includes{" "}
-          <span className="text-white">machine learning applications</span> and{" "}
+          <span className="text-white">generative AI applications</span> and{" "}
           <span className="text-white">automation tools</span> that streamline
           workflows, saving time and improving efficiency in data processing, task automation, and decision-making.
         </p>
