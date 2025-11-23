@@ -2,7 +2,10 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
+import { usePathname } from 'next/navigation';
+
 const StarsBackground: React.FC = () => {
+  const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
     scene: THREE.Scene,
@@ -10,6 +13,8 @@ const StarsBackground: React.FC = () => {
     renderer: THREE.WebGLRenderer,
     stars: THREE.Mesh[]
   } | null>(null);
+
+  if (pathname?.startsWith('/landing')) return null;
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -20,18 +25,21 @@ const StarsBackground: React.FC = () => {
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.z = 5;
 
-    const renderer = new THREE.WebGLRenderer({ 
+    const renderer = new THREE.WebGLRenderer({
       alpha: true,
-      antialias: true 
+      antialias: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    containerRef.current.appendChild(renderer.domElement);
+
+    // Store reference to the DOM element for cleanup
+    const rendererElement = renderer.domElement;
+    containerRef.current.appendChild(rendererElement);
 
     // Create stars
     const stars: THREE.Mesh[] = [];
     for (let z = -1000; z < 1000; z += 30) {  // Adjusted spacing
       const geometry = new THREE.SphereGeometry(0.5, 32, 32);
-      const material = new THREE.MeshBasicMaterial({ 
+      const material = new THREE.MeshBasicMaterial({
         color: new THREE.Color().setHSL(0.6, 0.3, Math.random() * 0.2 + 0.9), // Clean white/blue-tinted stars
         transparent: true,
         opacity: Math.random() * 0.3 + 0.8  // High opacity for professional look
@@ -59,7 +67,7 @@ const StarsBackground: React.FC = () => {
 
       if (sceneRef.current) {
         const time = Date.now() * 0.001; // Time in seconds
-        
+
         // Move stars and add twinkling effect
         sceneRef.current.stars.forEach((star, i) => {
           star.position.z += i / 25;  // Adjusted speed (faster than last version, slower than original)
@@ -69,7 +77,7 @@ const StarsBackground: React.FC = () => {
           if (star.material instanceof THREE.MeshBasicMaterial) {
             star.material.opacity = twinkle * (Math.random() * 0.4 + 0.7);
           }
-          
+
           // Add subtle scale pulsing for shine effect
           const scale = 1 + Math.sin(time * 3 + i * 0.2) * 0.1;
           star.scale.setScalar(scale);
@@ -106,21 +114,33 @@ const StarsBackground: React.FC = () => {
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
-      
-      const container = containerRef.current;
-      if (container && sceneRef.current) {
-        container.removeChild(sceneRef.current.renderer.domElement);
+
+      if (sceneRef.current) {
+        // Check if the element still has a parent before attempting removal
+        if (rendererElement.parentNode) {
+          rendererElement.parentNode.removeChild(rendererElement);
+        }
+
+        // Dispose of Three.js resources
         sceneRef.current.renderer.dispose();
+
+        // Clean up geometries and materials
+        sceneRef.current.stars.forEach(star => {
+          star.geometry.dispose();
+          if (star.material instanceof THREE.Material) {
+            star.material.dispose();
+          }
+        });
       }
     };
   }, []);
 
   return (
-    <div 
-      ref={containerRef} 
+    <div
+      ref={containerRef}
       className="fixed inset-0 z-[-1] pointer-events-none"
-      style={{ 
-        width: '100vw', 
+      style={{
+        width: '100vw',
         height: '100vh',
         position: 'fixed',
         top: 0,

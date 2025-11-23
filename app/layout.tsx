@@ -32,6 +32,8 @@ export const metadata: Metadata = {
   },
 };
 
+import PageWrapper from "@/components/PageWrapper";
+
 export default function RootLayout({
   children,
 }: {
@@ -47,9 +49,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0 relative z-10">
+          <PageWrapper>
             {children}
-          </div>
+          </PageWrapper>
           <Analytics />
         </ThemeProvider>
       </body>
