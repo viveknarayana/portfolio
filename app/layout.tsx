@@ -34,6 +34,8 @@ export const metadata: Metadata = {
 
 import PageWrapper from "@/components/PageWrapper";
 
+import { LandingProvider } from "@/context/LandingContext";
+
 export default function RootLayout({
   children,
 }: {
@@ -49,9 +51,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PageWrapper>
-            {children}
-          </PageWrapper>
+          <LandingProvider>
+            <PageWrapper>
+              {children}
+            </PageWrapper>
+          </LandingProvider>
           <Analytics />
         </ThemeProvider>
       </body>

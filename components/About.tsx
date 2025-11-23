@@ -2,6 +2,13 @@
 /* eslint-disable */
 import FadeIn from "./animations/FadeIn";
 
+import dynamic from "next/dynamic";
+
+const TreeWireMesh = dynamic(() => import("./TreeWireMesh"), {
+  ssr: false,
+  loading: () => null,
+});
+
 export default function About() {
   return (
     <section id="about" className="scroll-mt-16">

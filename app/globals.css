@@ -5,21 +5,17 @@
 @layer components {
   .mouse-aura {
     @apply fixed inset-0 pointer-events-none;
-    background-image: radial-gradient(
-      circle at var(--mouse-x) var(--mouse-y),
-      rgba(59, 130, 246, 0.12) 0%,
-      rgba(59, 130, 246, 0.06) 30%,
-      rgba(59, 130, 246, 0) 50%
-    );
+    background-image: radial-gradient(circle at var(--mouse-x) var(--mouse-y),
+        rgba(59, 130, 246, 0.12) 0%,
+        rgba(59, 130, 246, 0.06) 30%,
+        rgba(59, 130, 246, 0) 50%);
 
     /* Media query for touch devices */
     @media (hover: none) and (pointer: coarse) {
-      background-image: radial-gradient(
-        circle at top left,
-        rgba(59, 130, 246, 0.12) 0%,
-        rgba(59, 130, 246, 0.06) 30%,
-        rgba(59, 130, 246, 0) 50%
-      );
+      background-image: radial-gradient(circle at top left,
+          rgba(59, 130, 246, 0.12) 0%,
+          rgba(59, 130, 246, 0.06) 30%,
+          rgba(59, 130, 246, 0) 50%);
     }
   }
 }
@@ -49,25 +45,25 @@
   }
 
   .dark {
-    --background: 222 84% 8%;
-    --foreground: 210 40% 98%;
-    --card: 222 84% 12%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 84% 12%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 70% 70%;
-    --primary-foreground: 222 84% 8%;
-    --secondary: 217 25% 25%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 25% 25%;
-    --muted-foreground: 215 20% 70%;
-    --accent: 217 25% 25%;
-    --accent-foreground: 210 40% 98%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 25% 25%;
-    --input: 217 25% 25%;
-    --ring: 217 70% 70%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 80%;
   }
 }
 
@@ -75,6 +71,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

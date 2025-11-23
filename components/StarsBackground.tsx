@@ -21,7 +21,7 @@ const StarsBackground: React.FC = () => {
 
     // Initialize Three.js objects
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0f172a); // Professional dark navy background
+    scene.background = new THREE.Color(0x0a0a0a); // Deep black background
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
     camera.position.z = 5;
 
@@ -40,7 +40,7 @@ const StarsBackground: React.FC = () => {
     for (let z = -1000; z < 1000; z += 30) {  // Adjusted spacing
       const geometry = new THREE.SphereGeometry(0.5, 32, 32);
       const material = new THREE.MeshBasicMaterial({
-        color: new THREE.Color().setHSL(0.6, 0.3, Math.random() * 0.2 + 0.9), // Clean white/blue-tinted stars
+        color: new THREE.Color().setHSL(0, 0, Math.random() * 0.5 + 0.5), // White/Gray stars
         transparent: true,
         opacity: Math.random() * 0.3 + 0.8  // High opacity for professional look
       });

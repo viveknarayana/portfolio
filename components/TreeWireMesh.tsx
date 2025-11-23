@@ -5,9 +5,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 interface TreeWireMeshProps {
     className?: string;
+    isBackground?: boolean;
 }
 
-const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
+const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackground = true }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
     const sceneRef = useRef<THREE.Scene | null>(null);
@@ -18,36 +19,35 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
-        return () => setIsMounted(false);
-    }, []);
-
-    useEffect(() => {
         if (!canvasRef.current || !isMounted) return;
+
+        const parent = canvasRef.current.parentElement;
+        if (!parent) return;
 
         // Setup scene
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0a0a0a);
+        if (isBackground) {
+            scene.background = new THREE.Color(0x0a0a0a);
+        } else {
+            scene.background = null; // Transparent for embedded view
+        }
         sceneRef.current = scene;
 
         // Setup camera
-        const camera = new THREE.PerspectiveCamera(
-            50,
-            window.innerWidth / window.innerHeight,
-            0.1,
-            1000
-        );
+        const width = parent.clientWidth;
+        const height = parent.clientHeight;
+        const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
         camera.position.set(0, 12, 60);
         camera.lookAt(0, 2, 0);
         cameraRef.current = camera;
 
-        // Setup renderer using the canvas ref
+        // Setup renderer
         const renderer = new THREE.WebGLRenderer({
             canvas: canvasRef.current,
-            alpha: false,
+            alpha: !isBackground,
             antialias: true
         });
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         rendererRef.current = renderer;
 
@@ -56,17 +56,15 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
         treeGroup.position.y = -2;
         treeGroupRef.current = treeGroup;
 
-        // Load tree model or create procedural tree
+        // Load tree model
         const loader = new GLTFLoader();
         loader.load(
             '/models/maple_tree.glb',
             (gltf) => {
                 const model = gltf.scene;
-
                 model.traverse((child) => {
                     if (child instanceof THREE.Mesh) {
                         let wireframeColor = 0xaaaaaa;
-
                         if (child.material && 'color' in child.material) {
                             const originalColor = (child.material as any).color;
                             if (originalColor) {
@@ -77,15 +75,12 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
                                 wireframeColor = new THREE.Color(gray * 0.8 + 0.2, gray * 0.8 + 0.2, gray * 0.8 + 0.2).getHex();
                             }
                         }
-
                         const wireframeMaterial = new THREE.MeshBasicMaterial({
                             color: wireframeColor,
                             wireframe: true,
                             transparent: true,
                             opacity: 0.85
                         });
-
-                        // Dispose old material
                         if (child.material) {
                             if (Array.isArray(child.material)) {
                                 child.material.forEach(m => m.dispose());
@@ -93,27 +88,22 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
                                 child.material.dispose();
                             }
                         }
-
                         child.material = wireframeMaterial;
                     }
                 });
-
                 model.scale.set(0.1, 0.1, 0.1);
                 model.position.y = -2;
-
                 const box = new THREE.Box3().setFromObject(model);
                 const center = box.getCenter(new THREE.Vector3());
                 model.position.x -= center.x;
                 model.position.z -= center.z;
                 model.position.y -= center.y - 2;
-
                 treeGroup.add(model);
                 scene.add(treeGroup);
             },
             undefined,
             (error) => {
                 console.warn('Could not load tree model, using simple wireframe tree');
-                // Create simple procedural tree as fallback
                 const trunk = createSimpleTree();
                 treeGroup.add(trunk);
                 scene.add(treeGroup);
@@ -134,14 +124,19 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
         };
         window.addEventListener('mousemove', handleMouseMove);
 
-        // Resize handler
-        const handleResize = () => {
-            if (!camera || !renderer) return;
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        };
-        window.addEventListener('resize', handleResize);
+        // Resize observer
+        const resizeObserver = new ResizeObserver(() => {
+            if (!camera || !renderer || !canvasRef.current) return;
+            const parent = canvasRef.current.parentElement;
+            if (parent) {
+                const width = parent.clientWidth;
+                const height = parent.clientHeight;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+            }
+        });
+        resizeObserver.observe(parent);
 
         // Animation loop
         let time = 0;
@@ -165,19 +160,15 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
         };
         animate();
 
-        // Cleanup function
+        // Cleanup
         return () => {
-            // Cancel animation frame
             if (frameIdRef.current) {
                 cancelAnimationFrame(frameIdRef.current);
                 frameIdRef.current = null;
             }
-
-            // Remove event listeners
             window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('resize', handleResize);
+            resizeObserver.disconnect();
 
-            // Dispose Three.js resources
             if (scene) {
                 scene.traverse((object) => {
                     if (object instanceof THREE.Mesh) {
@@ -193,25 +184,19 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
                 });
                 scene.clear();
             }
-
-            // Dispose renderer
             if (renderer) {
                 renderer.dispose();
-                renderer.forceContextLoss();
             }
-
-            // Clear refs
             rendererRef.current = null;
             sceneRef.current = null;
             cameraRef.current = null;
             treeGroupRef.current = null;
         };
-    }, [isMounted]);
+    }, [isMounted, isBackground]);
 
     // Helper function to create simple tree
     const createSimpleTree = (): THREE.Group => {
         const group = new THREE.Group();
-
         // Trunk
         const trunkGeometry = new THREE.CylinderGeometry(0.25, 0.35, 5, 16);
         const trunkMaterial = new THREE.MeshBasicMaterial({
@@ -223,7 +208,6 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
         const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
         trunk.position.y = 0.5;
         group.add(trunk);
-
         // Branches
         for (let i = 0; i < 4; i++) {
             const angle = (i / 4) * Math.PI * 2;
@@ -235,35 +219,40 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "" }) => {
                 opacity: 0.85
             });
             const branch = new THREE.Mesh(branchGeometry, branchMaterial);
-
             branch.position.x = Math.cos(angle) * 0.5;
             branch.position.y = 2 + Math.random();
             branch.position.z = Math.sin(angle) * 0.5;
             branch.rotation.z = Math.PI / 4;
             branch.rotation.y = angle;
-
             group.add(branch);
         }
-
         return group;
     };
 
-    if (!isMounted) {
-        return null;
-    }
+    const [opacity, setOpacity] = useState(0);
+
+    useEffect(() => {
+        setIsMounted(true);
+        setTimeout(() => setOpacity(1), 100);
+        return () => setIsMounted(false);
+    }, []);
+
+    if (!isMounted) return null;
 
     return (
         <canvas
             ref={canvasRef}
-            className={`fixed inset-0 z-0 ${className}`}
+            className={`${isBackground ? 'fixed inset-0 z-0' : 'absolute inset-0 z-0'} ${className}`}
             style={{
                 width: '100%',
                 height: '100%',
-                position: 'fixed',
+                position: isBackground ? 'fixed' : 'absolute',
                 top: 0,
                 left: 0,
-                background: '#0a0a0a',
-                display: 'block'
+                background: isBackground ? '#0a0a0a' : 'transparent',
+                display: 'block',
+                opacity: opacity,
+                transition: 'opacity 2s ease-out'
             }}
         />
     );

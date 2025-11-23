@@ -10,6 +10,8 @@ interface FadeInProps {
     className?: string;
 }
 
+import { useLanding } from "@/context/LandingContext";
+
 export default function FadeIn({
     children,
     delay = 0,
@@ -17,6 +19,14 @@ export default function FadeIn({
     direction = "up",
     className = "",
 }: FadeInProps) {
+    let isLandingVisible = false;
+    try {
+        const context = useLanding();
+        isLandingVisible = context.isLandingVisible;
+    } catch (e) {
+        // Ignore if not in provider
+    }
+
     const directionOffset = {
         up: { y: 40 },
         down: { y: -40 },
@@ -31,7 +41,7 @@ export default function FadeIn({
                 opacity: 0,
                 ...directionOffset[direction],
             }}
-            whileInView={{
+            whileInView={isLandingVisible ? undefined : {
                 opacity: 1,
                 x: 0,
                 y: 0,

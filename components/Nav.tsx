@@ -6,6 +6,12 @@ import FloatingObject from "./StarsBackground";
 import TextReveal from "./animations/TextReveal";
 import FadeIn from "./animations/FadeIn";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+
+const TreeWireMesh = dynamic(() => import("./TreeWireMesh"), {
+  ssr: false,
+  loading: () => null,
+});
 
 type NavItem = {
   name: string;
@@ -32,12 +38,12 @@ export default function Nav() {
     return {
       linkClass: isActive ? "active" : "",
       indicatorClass: `nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all ${isActive
-          ? "active w-16 bg-foreground h-2"
-          : "group-hover:w-16 group-hover:bg-foreground group-hover:h-px"
+        ? "active w-16 bg-foreground h-2"
+        : "group-hover:w-16 group-hover:bg-foreground group-hover:h-px"
         }`,
       textClass: `nav-text text-xs font-bold uppercase tracking-widest ${isActive
-          ? "text-foreground"
-          : "text-slate-500 group-hover:text-foreground"
+        ? "text-foreground"
+        : "text-slate-500 group-hover:text-foreground"
         }`,
     };
   };
@@ -50,18 +56,12 @@ export default function Nav() {
         <TextReveal className="text-[42px] font-bold lg:text-start">
           Hi, I'm Vivek
         </TextReveal>
-        <FadeIn delay={0.3} direction="up">
-          <h2 className="text-xl lg:text-start">
-            Full-Stack and AI Developer
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.5} direction="up">
-          <p className="text-lg lg:text-start text-muted-foreground">
-            I develop and improve web and AI applications to ensure efficiency and ease of use. My focus is on leveraging AI to create innovative solutions and designing web applications that offer real value and usability in everyday tasks.
-          </p>
-        </FadeIn>
 
-        {/* Add the floating 3D object here */}
+        <FadeIn delay={0.5} direction="up">
+          <div className="relative h-[300px] w-full rounded-xl overflow-hidden mt-4">
+            <TreeWireMesh isBackground={false} />
+          </div>
+        </FadeIn>
 
       </div>
       <FadeIn delay={0.7} direction="up">

@@ -8,15 +8,25 @@ interface StaggerContainerProps {
     className?: string;
 }
 
+import { useLanding } from "@/context/LandingContext";
+
 export default function StaggerContainer({
     children,
     staggerDelay = 0.1,
     className = "",
 }: StaggerContainerProps) {
+    let isLandingVisible = false;
+    try {
+        const context = useLanding();
+        isLandingVisible = context.isLandingVisible;
+    } catch (e) {
+        // Ignore
+    }
+
     return (
         <motion.div
             initial="hidden"
-            whileInView="visible"
+            whileInView={isLandingVisible ? undefined : "visible"}
             viewport={{ once: true, margin: "-50px" }}
             variants={{
                 visible: {
