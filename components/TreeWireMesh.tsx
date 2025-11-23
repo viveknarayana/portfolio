@@ -59,7 +59,7 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackgroun
         // Load tree model
         const loader = new GLTFLoader();
         loader.load(
-            '/models/maple_tree.glb',
+            '/models/green_tree.glb',
             (gltf) => {
                 const model = gltf.scene;
                 model.traverse((child) => {
@@ -91,7 +91,7 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackgroun
                         child.material = wireframeMaterial;
                     }
                 });
-                model.scale.set(0.1, 0.1, 0.1);
+                model.scale.set(30.0, 30.0, 30.0);
                 model.position.y = -2;
                 const box = new THREE.Box3().setFromObject(model);
                 const center = box.getCenter(new THREE.Vector3());
@@ -110,12 +110,24 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackgroun
             }
         );
 
-        // Add lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        // Enhanced lighting for planet
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
         scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(5, 10, 5);
-        scene.add(directionalLight);
+
+        // Main directional light (sun-like)
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.5);
+        directionalLight1.position.set(10, 10, 10);
+        scene.add(directionalLight1);
+
+        // Secondary directional light (fill light)
+        const directionalLight2 = new THREE.DirectionalLight(0x8888ff, 0.8);
+        directionalLight2.position.set(-10, 5, -5);
+        scene.add(directionalLight2);
+
+        // Point light for shine effect
+        const pointLight = new THREE.PointLight(0xffffff, 2, 100);
+        pointLight.position.set(0, 15, 20);
+        scene.add(pointLight);
 
         // Mouse handler
         const handleMouseMove = (e: MouseEvent) => {

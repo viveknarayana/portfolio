@@ -131,14 +131,71 @@ export default function LandingOverlay({ onEnter }: LandingOverlayProps) {
                 exit={{ opacity: 0, x: 20, transition: { duration: 0.5 } }}
             >
                 <div className="relative w-32 h-32">
-                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
-                        <text x="50" y="20" textAnchor="middle" fontSize="8" fill="currentColor">N</text>
-                        <text x="80" y="55" textAnchor="middle" fontSize="8" fill="currentColor">E</text>
-                        <text x="50" y="90" textAnchor="middle" fontSize="8" fill="currentColor">S</text>
-                        <text x="20" y="55" textAnchor="middle" fontSize="8" fill="currentColor">W</text>
-                        <line x1="50" y1="50" x2="50" y2="10" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
-                    </svg>
+                    <motion.svg
+                        viewBox="0 0 100 100"
+                        className="w-full h-full"
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                    >
+                        {/* Outer Ring with Ticks */}
+                        <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.2" opacity="0.3" />
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.5" />
+
+                        {/* Cardinal Directions */}
+                        <text x="50" y="12" textAnchor="middle" fontSize="6" fill="currentColor" fontWeight="bold">N</text>
+                        <text x="88" y="52" textAnchor="middle" fontSize="6" fill="currentColor" fontWeight="bold">E</text>
+                        <text x="50" y="92" textAnchor="middle" fontSize="6" fill="currentColor" fontWeight="bold">S</text>
+                        <text x="12" y="52" textAnchor="middle" fontSize="6" fill="currentColor" fontWeight="bold">W</text>
+
+                        {/* Ticks */}
+                        {[...Array(12)].map((_, i) => (
+                            <line
+                                key={i}
+                                x1="50" y1="15"
+                                x2="50" y2="18"
+                                stroke="currentColor"
+                                strokeWidth="0.5"
+                                transform={`rotate(${i * 30} 50 50)`}
+                                opacity="0.6"
+                            />
+                        ))}
+                        {[...Array(72)].map((_, i) => (
+                            <line
+                                key={`sub-${i}`}
+                                x1="50" y1="15"
+                                x2="50" y2="16"
+                                stroke="currentColor"
+                                strokeWidth="0.2"
+                                transform={`rotate(${i * 5} 50 50)`}
+                                opacity="0.4"
+                            />
+                        ))}
+                    </motion.svg>
+
+                    {/* Inner Rotating Ring */}
+                    <motion.svg
+                        viewBox="0 0 100 100"
+                        className="absolute inset-0 w-full h-full"
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    >
+                        <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" strokeWidth="0.2" strokeDasharray="4 4" opacity="0.4" />
+                        <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.1" opacity="0.3" />
+                    </motion.svg>
+
+                    {/* Needle */}
+                    <motion.svg
+                        viewBox="0 0 100 100"
+                        className="absolute inset-0 w-full h-full"
+                        initial={{ rotate: 0 }}
+                        animate={{ rotate: [0, 5, -5, 0] }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <path d="M50 20 L53 50 L50 80 L47 50 Z" fill="currentColor" opacity="0.8" />
+                        <circle cx="50" cy="50" r="2" fill="currentColor" />
+                    </motion.svg>
                 </div>
             </motion.div>
         </motion.div>

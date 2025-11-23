@@ -3,15 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "lucide-react";
 import useActiveSection from "@/hooks/useActiveSection";
 import FloatingObject from "./StarsBackground";
-import TextReveal from "./animations/TextReveal";
 import FadeIn from "./animations/FadeIn";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-
-const TreeWireMesh = dynamic(() => import("./TreeWireMesh"), {
-  ssr: false,
-  loading: () => null,
-});
 
 type NavItem = {
   name: string;
@@ -20,14 +13,12 @@ type NavItem = {
 
 export default function Nav() {
   const activeSection = useActiveSection([
-    "about",
     "experience",
     "projects",
     "contact",
   ]);
 
   const navItems: NavItem[] = [
-    { name: "About", href: "#about" },
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
@@ -38,12 +29,12 @@ export default function Nav() {
     return {
       linkClass: isActive ? "active" : "",
       indicatorClass: `nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all ${isActive
-        ? "active w-16 bg-foreground h-2"
-        : "group-hover:w-16 group-hover:bg-foreground group-hover:h-px"
+          ? "active w-16 bg-foreground h-2"
+          : "group-hover:w-16 group-hover:bg-foreground group-hover:h-px"
         }`,
       textClass: `nav-text text-xs font-bold uppercase tracking-widest ${isActive
-        ? "text-foreground"
-        : "text-slate-500 group-hover:text-foreground"
+          ? "text-foreground"
+          : "text-slate-500 group-hover:text-foreground"
         }`,
     };
   };
@@ -52,15 +43,18 @@ export default function Nav() {
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 flex flex-col lg:gap-4">
       <div className="flex flex-col gap-4 lg:pr-24 mt-6 lg:mt-0">
         <div className="w-full flex lg:items-center lg:justify-start">
+          <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+            Vivek Narayana
+          </h1>
         </div>
-        <TextReveal className="text-[42px] font-bold lg:text-start">
-          Hi, I&apos;m Vivek
-        </TextReveal>
-
+        <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+          Full Stack & AI Developer
+        </h2>
+        
         <FadeIn delay={0.5} direction="up">
-          <div className="relative h-[300px] w-full rounded-xl overflow-hidden">
-            <TreeWireMesh isBackground={false} />
-          </div>
+          <p className="mt-4 max-w-xs leading-normal text-slate-400">
+            I&apos;m a full-stack developer with a strong foundation in building scalable web applications and backend systems. My experience spans across front-end development, backend architecture, and building AI-driven systems that enhance functionality and user interaction.
+          </p>
         </FadeIn>
 
       </div>
