@@ -14,8 +14,6 @@ const StarsBackground: React.FC = () => {
     stars: THREE.Mesh[]
   } | null>(null);
 
-  if (pathname?.startsWith('/landing')) return null;
-
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -133,7 +131,9 @@ const StarsBackground: React.FC = () => {
         });
       }
     };
-  }, []);
+  }, [pathname]);
+
+  if (pathname?.startsWith('/landing')) return null;
 
   return (
     <div

@@ -54,11 +54,11 @@ export default function Nav() {
         <div className="w-full flex lg:items-center lg:justify-start">
         </div>
         <TextReveal className="text-[42px] font-bold lg:text-start">
-          Hi, I'm Vivek
+          Hi, I&apos;m Vivek
         </TextReveal>
 
         <FadeIn delay={0.5} direction="up">
-          <div className="relative h-[300px] w-full rounded-xl overflow-hidden mt-4">
+          <div className="relative h-[300px] w-full rounded-xl overflow-hidden">
             <TreeWireMesh isBackground={false} />
           </div>
         </FadeIn>
