@@ -9,6 +9,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MoveUpRight } from "lucide-react";
+import TiltCard from "./animations/TiltCard";
+import StaggerContainer, { StaggerItem } from "./animations/StaggerContainer";
+import { motion } from "framer-motion";
 
 const jobProjects = [
   {
@@ -63,7 +66,7 @@ const jobProjects = [
   {
     imagePath: "/volare.png",
     title: "Volare - AI Powered Interview Preparation App",
-    description: 
+    description:
       "Developed an AI-powered behavioral interview simulation feature using Groq, integrating facial expression and body language analysis with HumeAI. The app tracks performance using a React dashboard and stores results in Supabase.",
     skills: [
       "Python",
@@ -128,7 +131,7 @@ const jobProjects = [
   {
     "imagePath": "/calcCalculator.jpeg",
     "title": "CalcFix Calculator",
-    "description": 
+    "description":
       "Built a comprehensive calculus calculator capable of solving problems from Calculus I and II, including derivatives, integrals, limits, and series expansions. Developed during a hackathon (2/24 - 2/26), the project features a Flask backend for computation and a frontend using HTML, CSS, and JavaScript for an interactive user experience.",
     "skills": [
       "Flask",
@@ -138,7 +141,7 @@ const jobProjects = [
       "JavaScript"
     ],
     "link": "https://github.com/viveknarayana/Calculus-Calculator"
-}
+  }
 ];
 
 
@@ -150,44 +153,53 @@ export default function Projects() {
           Projects
         </h2>
       </div>
-      <>
+      <StaggerContainer staggerDelay={0.15}>
         {jobProjects.map((project, index) => (
-          <a
-            key={index}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:cursor-pointer"
-          >
-            <Card className="group lg:p-6 mb-4 flex flex-col lg:flex-row w-full min-h-fit gap-0 lg:gap-5 border border-transparent bg-transparent hover:border-blue-300 dark:hover:border-blue-400 lg:hover:drop-shadow-lg">
-              <CardHeader className="h-full w-full lg:w-1/3 mb-4 p-0">
-                <Image
-                  src={project.imagePath}
-                  alt={`Screenshot of ${project.title}`}
-                  width={1920}
-                  height={1080}
-                  priority
-                  className="bg-[#141414] mt-2 border border-muted-foreground rounded-[0.5rem]"
-                />
-              </CardHeader>
-              <CardContent className="flex flex-col p-0 w-full lg:w-2/3">
-                <p className="text-primary font-bold">
-                  {project.title}{" "}
-                  <MoveUpRight className="ml-1 inline-block h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 motion-reduce:transition-none" />
-                </p>
-                <CardDescription className="py-3 text-muted-foreground">
-                  {project.description}
-                </CardDescription>
-                <CardFooter className="p-0 flex flex-wrap gap-2">
-                  {project.skills.map((skill, index) => (
-                    <Badge key={index}>{skill}</Badge>
-                  ))}
-                </CardFooter>
-              </CardContent>
-            </Card>
-          </a>
+          <StaggerItem key={index}>
+            <TiltCard tiltAmount={5} scale={1.01}>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:cursor-pointer"
+              >
+                <Card className="group lg:p-6 mb-4 flex flex-col lg:flex-row w-full min-h-fit gap-0 lg:gap-5 border border-transparent bg-transparent hover:border-blue-300 dark:hover:border-blue-400 lg:hover:drop-shadow-lg transition-all duration-300">
+                  <CardHeader className="h-full w-full lg:w-1/3 mb-4 p-0">
+                    <Image
+                      src={project.imagePath}
+                      alt={`Screenshot of ${project.title}`}
+                      width={1920}
+                      height={1080}
+                      priority
+                      className="bg-[#141414] mt-2 border border-muted-foreground rounded-[0.5rem] transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </CardHeader>
+                  <CardContent className="flex flex-col p-0 w-full lg:w-2/3">
+                    <p className="text-primary font-bold">
+                      {project.title}{" "}
+                      <MoveUpRight className="ml-1 inline-block h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 motion-reduce:transition-none" />
+                    </p>
+                    <CardDescription className="py-3 text-muted-foreground">
+                      {project.description}
+                    </CardDescription>
+                    <CardFooter className="p-0 flex flex-wrap gap-2">
+                      {project.skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skillIndex}
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Badge>{skill}</Badge>
+                        </motion.div>
+                      ))}
+                    </CardFooter>
+                  </CardContent>
+                </Card>
+              </a>
+            </TiltCard>
+          </StaggerItem>
         ))}
-      </>
+      </StaggerContainer>
     </section>
   );
 }

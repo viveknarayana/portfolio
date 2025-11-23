@@ -1,5 +1,6 @@
 "use client";
 /* eslint-disable */
+import FadeIn from "./animations/FadeIn";
 
 export default function About() {
   return (
@@ -10,28 +11,33 @@ export default function About() {
         </h2>
       </div>
       <div className="flex flex-col gap-4">
-        <p className="text-start text-muted-foreground lg:px-6">
-          I'm a full-stack developer with a strong foundation in building{" "}
-          <span className="text-white">scalable web applications</span> and{" "}
-          <span className="text-white">backend systems</span>.
-          My experience spans across front-end development, backend architecture, and building AI-driven systems that enhance functionality and user interaction.
-        </p>
-        <p className="text-start text-muted-foreground lg:px-6">
-          I've worked on{" "}
-          <span className="text-white">large-scale web platforms</span>,
-          implementing APIs, and integrating databases. Whether it's designing intuitive UIs, developing
-          robust backends, or handling{" "}
-          <span className="text-white">data processing pipelines</span>, I
-          enjoy tackling technical challenges that improve efficiency and
-          usability.
-        </p>
-        <p className="text-start text-muted-foreground lg:px-6">
-          My experience also includes{" "}
-          <span className="text-white">generative AI applications</span> and{" "}
-          <span className="text-white">automation tools</span> that streamline
-          workflows, saving time and improving efficiency in data processing, task automation, and decision-making.
-        </p>
-
+        <FadeIn delay={0.2} direction="up">
+          <p className="text-start text-muted-foreground lg:px-6">
+            I'm a full-stack developer with a strong foundation in building{" "}
+            <span className="text-white">scalable web applications</span> and{" "}
+            <span className="text-white">backend systems</span>.
+            My experience spans across front-end development, backend architecture, and building AI-driven systems that enhance functionality and user interaction.
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.4} direction="up">
+          <p className="text-start text-muted-foreground lg:px-6">
+            I've worked on{" "}
+            <span className="text-white">large-scale web platforms</span>,
+            implementing APIs, and integrating databases. Whether it's designing intuitive UIs, developing
+            robust backends, or handling{" "}
+            <span className="text-white">data processing pipelines</span>, I
+            enjoy tackling technical challenges that improve efficiency and
+            usability.
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.6} direction="up">
+          <p className="text-start text-muted-foreground lg:px-6">
+            My experience also includes{" "}
+            <span className="text-white">generative AI applications</span> and{" "}
+            <span className="text-white">automation tools</span> that streamline
+            workflows, saving time and improving efficiency in data processing, task automation, and decision-making.
+          </p>
+        </FadeIn>
       </div>
     </section>
   );

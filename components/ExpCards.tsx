@@ -9,6 +9,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MoveRight } from "lucide-react";
+import TiltCard from "./animations/TiltCard";
+import StaggerContainer, { StaggerItem } from "./animations/StaggerContainer";
+import { motion } from "framer-motion";
 
 const jobPositions = [
   {
@@ -97,7 +100,7 @@ const jobPositions = [
       "Student Engagement",
     ],
   }
-  
+
 ];
 
 export default function ExpCard() {
@@ -108,37 +111,46 @@ export default function ExpCard() {
           Experience
         </h2>
       </div>
-      <>
+      <StaggerContainer staggerDelay={0.15}>
         {jobPositions.map((job, index) => (
-          <Card
-            key={index}
-            className="lg:p-6 mb-4 w-full border border-transparent bg-transparent hover:border-blue-300 dark:hover:border-blue-400 lg:hover:drop-shadow-lg"
-          >
-            <CardContent className="flex flex-col p-0">
-              <p className="text-foreground font-bold">
-                {job.currentPosition} • {job.place}
-              </p>
-              <p className="text-base text-slate-400 mb-3">
-                {job.timeline}
-              </p>
-              {job.previousPositions.map((position, index) => (
-                <p key={index} className="text-slate-400 text-sm font-bold">
-                  {position}
-                </p>
-              ))}
-              <CardDescription className="py-3 text-muted-foreground">
-                {job.description}
-              </CardDescription>
-              <CardFooter className="p-0 flex flex-wrap gap-2">
-                {job.skills.map((skill, index) => (
-                  <Badge key={index}>{skill}</Badge>
-                ))}
-              </CardFooter>
-            </CardContent>
-          </Card>
+          <StaggerItem key={index}>
+            <TiltCard tiltAmount={5} scale={1.01}>
+              <Card
+                className="lg:p-6 mb-4 w-full border border-transparent bg-transparent hover:border-blue-300 dark:hover:border-blue-400 lg:hover:drop-shadow-lg transition-all duration-300"
+              >
+                <CardContent className="flex flex-col p-0">
+                  <p className="text-foreground font-bold">
+                    {job.currentPosition} • {job.place}
+                  </p>
+                  <p className="text-base text-slate-400 mb-3">
+                    {job.timeline}
+                  </p>
+                  {job.previousPositions.map((position, posIndex) => (
+                    <p key={posIndex} className="text-slate-400 text-sm font-bold">
+                      {position}
+                    </p>
+                  ))}
+                  <CardDescription className="py-3 text-muted-foreground">
+                    {job.description}
+                  </CardDescription>
+                  <CardFooter className="p-0 flex flex-wrap gap-2">
+                    {job.skills.map((skill, skillIndex) => (
+                      <motion.div
+                        key={skillIndex}
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Badge>{skill}</Badge>
+                      </motion.div>
+                    ))}
+                  </CardFooter>
+                </CardContent>
+              </Card>
+            </TiltCard>
+          </StaggerItem>
         ))}
-      </>
-      
+      </StaggerContainer>
+
     </section>
   );
 }
