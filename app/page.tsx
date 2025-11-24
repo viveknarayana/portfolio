@@ -35,16 +35,35 @@ export default function Home() {
     <>
       <Head>
         <style jsx global>{`
+          html {
+            overflow: ${isLandingVisible ? 'hidden' : 'auto'};
+            position: ${isLandingVisible ? 'fixed' : 'static'};
+            width: 100%;
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+          }
+          html::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+          }
           body {
             font-family: "${inter.style.fontFamily}";
             overflow: ${isLandingVisible ? 'hidden' : 'auto'};
+            position: ${isLandingVisible ? 'fixed' : 'static'};
+            width: 100%;
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+          }
+          body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
           }
         `}</style>
       </Head>
 
       <AnimatePresence mode="wait">
         {isLandingVisible && (
-          <LandingOverlay onEnter={() => setIsLandingVisible(false)} />
+          <LandingOverlay onEnter={() => { setIsLandingVisible(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
         )}
       </AnimatePresence>
 
