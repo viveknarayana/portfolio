@@ -13,6 +13,8 @@ import TiltCard from "./animations/TiltCard";
 import StaggerContainer, { StaggerItem } from "./animations/StaggerContainer";
 import { motion } from "framer-motion";
 
+import Image from "next/image";
+
 const jobPositions = [
   {
     timeline: "Oct 2025 - Present",
@@ -29,6 +31,7 @@ const jobPositions = [
       "LLM Analytics",
       "Data Engineering",
     ],
+    logoPath: "/Eudia.jpeg"
   },
   {
     timeline: "July 2025 – Sep. 2025",
@@ -49,6 +52,7 @@ const jobPositions = [
       "AI Safety",
       "Outdoor Technology",
     ],
+    logoPath: "/UC DAVIS.png"
   },
   {
     timeline: "June 2025 – Sep. 2025",
@@ -66,6 +70,7 @@ const jobPositions = [
       "MongoDB",
       "Cloud Optimization",
     ],
+    logoPath: "/Centene.png"
   },
   {
     timeline: "July 2023 – Aug. 2024",
@@ -85,6 +90,7 @@ const jobPositions = [
       "EC2/S3",
       "Unit Testing",
     ],
+    logoPath: "/Mytonomy.png"
   },
   {
     timeline: "Aug. 2022 – Dec. 2022",
@@ -99,6 +105,7 @@ const jobPositions = [
       "Curriculum Development",
       "Student Engagement",
     ],
+    logoPath: "/CodeFu.webp"
   }
 
 ];
@@ -106,11 +113,6 @@ const jobPositions = [
 export default function ExpCard() {
   return (
     <section id="experience" className="scroll-mt-16 lg:mt-16">
-      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-background/0 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest lg:sr-only">
-          Experience
-        </h2>
-      </div>
       <StaggerContainer staggerDelay={0.15}>
         {jobPositions.map((job, index) => (
           <StaggerItem key={index}>
@@ -118,33 +120,57 @@ export default function ExpCard() {
               <Card
                 className="lg:p-6 mb-4 w-full border border-transparent bg-transparent hover:border-blue-300 dark:hover:border-blue-400 lg:hover:drop-shadow-lg transition-all duration-300"
               >
-                <CardContent className="flex flex-col p-0">
-                  <p className="text-foreground font-bold">
-                    {job.currentPosition} • {job.place}
-                  </p>
-                  <p className="text-base text-slate-400 mb-3">
-                    {job.timeline}
-                  </p>
-                  {job.previousPositions.map((position, posIndex) => (
-                    <p key={posIndex} className="text-slate-400 text-sm font-bold">
-                      {position}
-                    </p>
-                  ))}
-                  <CardDescription className="py-3 text-muted-foreground">
-                    {job.description}
-                  </CardDescription>
-                  <CardFooter className="p-0 flex flex-wrap gap-2">
-                    {job.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skillIndex}
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Badge>{skill}</Badge>
-                      </motion.div>
+                <div className="flex flex-col md:flex-row gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="h-16 w-16 rounded-xl bg-slate-800 flex items-center justify-center overflow-hidden border border-slate-700 relative">
+                      <Image
+                        src={job.logoPath}
+                        alt={`${job.place} logo`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <CardContent className="flex flex-col p-0 flex-grow">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                      <div>
+                        <h3 className="text-lg font-bold text-slate-200">
+                          {job.currentPosition}
+                        </h3>
+                        <p className="text-slate-400 font-medium">
+                          {job.place}
+                        </p>
+                      </div>
+                      <p className="text-sm text-slate-500 font-mono mt-1 md:mt-0">
+                        {job.timeline}
+                      </p>
+                    </div>
+
+                    {job.previousPositions.map((position, posIndex) => (
+                      position && (
+                        <p key={posIndex} className="text-slate-500 text-sm font-medium mb-2">
+                          {position}
+                        </p>
+                      )
                     ))}
-                  </CardFooter>
-                </CardContent>
+
+                    <CardDescription className="py-3 text-slate-400 leading-relaxed">
+                      {job.description}
+                    </CardDescription>
+
+                    <CardFooter className="p-0 flex flex-wrap gap-2 mt-2">
+                      {job.skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skillIndex}
+                          whileHover={{ scale: 1.1, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Badge variant="secondary" className="bg-slate-800/50 text-slate-300 hover:bg-slate-800">{skill}</Badge>
+                        </motion.div>
+                      ))}
+                    </CardFooter>
+                  </CardContent>
+                </div>
               </Card>
             </TiltCard>
           </StaggerItem>

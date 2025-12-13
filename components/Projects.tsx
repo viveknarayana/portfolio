@@ -4,16 +4,13 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
-  CardHeader,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MoveUpRight } from "lucide-react";
 import TiltCard from "./animations/TiltCard";
 import StaggerContainer, { StaggerItem } from "./animations/StaggerContainer";
-import { motion } from "framer-motion";
 
-const jobProjects = [
+export const jobProjects = [
   {
     imagePath: "/redian.png",
     title: "Redian - LLM Agent Security Testing Framework",
@@ -144,59 +141,63 @@ const jobProjects = [
   }
 ];
 
+export function ProjectCard({ project }: { project: typeof jobProjects[0] }) {
+  return (
+    <TiltCard tiltAmount={3} scale={1.02} className="h-full">
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block h-full"
+      >
+        <Card className="group h-full flex flex-col overflow-hidden border-slate-800 bg-slate-900/50 hover:border-slate-600 hover:bg-slate-900/80 transition-all duration-300">
+          <div className="relative w-full aspect-video overflow-hidden bg-slate-950">
+            <Image
+              src={project.imagePath}
+              alt={`Screenshot of ${project.title}`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+          <CardContent className="flex flex-col flex-grow p-6 gap-4">
+            <div>
+              <h3 className="text-xl font-bold text-slate-100 flex items-center gap-2 group-hover:text-blue-400 transition-colors">
+                {project.title}
+                <MoveUpRight className="h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+              </h3>
+              <CardDescription className="mt-2 text-slate-400">
+                {project.description}
+              </CardDescription>
+            </div>
+            <div className="mt-auto flex flex-wrap gap-2">
+              {project.skills.map((skill, skillIndex) => (
+                <Badge
+                  key={skillIndex}
+                  variant="secondary"
+                  className="bg-slate-800 text-slate-300 hover:bg-slate-700"
+                >
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </a>
+    </TiltCard>
+  );
+}
 
 export default function Projects() {
   return (
     <section id="projects" className="scroll-mt-16 lg:mt-16">
-      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-background/0 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-        <h2 className="text-sm font-bold uppercase tracking-widest lg:sr-only">
-          Projects
-        </h2>
-      </div>
-      <StaggerContainer staggerDelay={0.15}>
+      <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {jobProjects.map((project, index) => (
-          <StaggerItem key={index}>
-            <TiltCard tiltAmount={5} scale={1.01}>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:cursor-pointer"
-              >
-                <Card className="group lg:p-6 mb-4 flex flex-col lg:flex-row w-full min-h-fit gap-0 lg:gap-5 border border-transparent bg-transparent hover:border-blue-300 dark:hover:border-blue-400 lg:hover:drop-shadow-lg transition-all duration-300">
-                  <CardHeader className="h-full w-full lg:w-1/3 mb-4 p-0">
-                    <Image
-                      src={project.imagePath}
-                      alt={`Screenshot of ${project.title}`}
-                      width={1920}
-                      height={1080}
-                      priority
-                      className="bg-[#141414] mt-2 border border-muted-foreground rounded-[0.5rem] transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </CardHeader>
-                  <CardContent className="flex flex-col p-0 w-full lg:w-2/3">
-                    <p className="text-primary font-bold">
-                      {project.title}{" "}
-                      <MoveUpRight className="ml-1 inline-block h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 motion-reduce:transition-none" />
-                    </p>
-                    <CardDescription className="py-3 text-muted-foreground">
-                      {project.description}
-                    </CardDescription>
-                    <CardFooter className="p-0 flex flex-wrap gap-2">
-                      {project.skills.map((skill, skillIndex) => (
-                        <motion.div
-                          key={skillIndex}
-                          whileHover={{ scale: 1.1, y: -2 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Badge>{skill}</Badge>
-                        </motion.div>
-                      ))}
-                    </CardFooter>
-                  </CardContent>
-                </Card>
-              </a>
-            </TiltCard>
+          <StaggerItem
+            key={index}
+            className="col-span-1"
+          >
+            <ProjectCard project={project} />
           </StaggerItem>
         ))}
       </StaggerContainer>
