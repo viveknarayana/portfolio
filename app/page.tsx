@@ -15,7 +15,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const auraRef = useRef<HTMLDivElement>(null);
   // const { isLandingVisible, setIsLandingVisible } = useLanding();
-  const [activeTab, setActiveTab] = useState('projects');
+  const [activeTab, setActiveTab] = useState('about');
 
   useEffect(() => {
     const updateAuraPosition = (e: MouseEvent) => {
@@ -73,7 +73,7 @@ export default function Home() {
         {/* Tab Navigation */}
         <div className="flex justify-center mb-12">
           <div className="inline-flex p-1 bg-slate-900/50 backdrop-blur-sm rounded-full border border-slate-800">
-            {['Experience', 'Projects', 'About'].map((tab) => (
+            {['About', 'Experience', 'Projects'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab.toLowerCase())}
