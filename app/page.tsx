@@ -7,14 +7,14 @@ import Contact from "@/components/Contact";
 import { useEffect, useRef, useState } from "react";
 import { Inter } from "next/font/google";
 import { AnimatePresence, motion } from "framer-motion";
-import LandingOverlay from "@/components/LandingOverlay";
-import { useLanding } from "@/context/LandingContext";
+// import LandingOverlay from "@/components/LandingOverlay";
+// import { useLanding } from "@/context/LandingContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const auraRef = useRef<HTMLDivElement>(null);
-  const { isLandingVisible, setIsLandingVisible } = useLanding();
+  // const { isLandingVisible, setIsLandingVisible } = useLanding();
   const [activeTab, setActiveTab] = useState('projects');
 
   useEffect(() => {
@@ -36,8 +36,8 @@ export default function Home() {
       <Head>
         <style jsx global>{`
           html {
-            overflow: ${isLandingVisible ? 'hidden' : 'auto'};
-            position: ${isLandingVisible ? 'fixed' : 'static'};
+            overflow: auto;
+            position: static;
             width: 100%;
             /* Hide scrollbar for Chrome, Safari and Opera */
             scrollbar-width: none; /* Firefox */
@@ -48,8 +48,8 @@ export default function Home() {
           }
           body {
             font-family: "${inter.style.fontFamily}";
-            overflow: ${isLandingVisible ? 'hidden' : 'auto'};
-            position: ${isLandingVisible ? 'fixed' : 'static'};
+            overflow: auto;
+            position: static;
             width: 100%;
             /* Hide scrollbar for Chrome, Safari and Opera */
             scrollbar-width: none; /* Firefox */
@@ -59,13 +59,13 @@ export default function Home() {
             display: none; /* Chrome, Safari, Opera */
           }
         `}</style>
-      </Head>
+      </Head >
 
-      <AnimatePresence mode="wait">
+      {/* <AnimatePresence mode="wait">
         {isLandingVisible && (
           <LandingOverlay onEnter={() => { setIsLandingVisible(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-12">
         <div ref={auraRef} className="mouse-aura" />
@@ -104,7 +104,7 @@ export default function Home() {
             </motion.div>
           </AnimatePresence>
         </main>
-      </div>
+      </div >
     </>
   );
 }
