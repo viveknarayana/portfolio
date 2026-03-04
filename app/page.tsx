@@ -6,7 +6,6 @@ import Projects, { jobProjects, ProjectCard } from "@/components/Projects";
 import Contact from "@/components/Contact";
 import { useEffect, useRef, useState } from "react";
 import { Inter } from "next/font/google";
-import { AnimatePresence, motion } from "framer-motion";
 // import LandingOverlay from "@/components/LandingOverlay";
 // import { useLanding } from "@/context/LandingContext";
 
@@ -28,6 +27,27 @@ export default function Home() {
 
     return () => {
       window.removeEventListener("pointermove", updateAuraPosition);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the overlapping entry that is currently intersecting
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveTab(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-20% 0px -79% 0px" } // Biased towards top of screen
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
     };
   }, []);
 
@@ -71,12 +91,17 @@ export default function Home() {
         <div ref={auraRef} className="mouse-aura" />
 
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex p-1 bg-slate-900/50 backdrop-blur-sm rounded-full border border-slate-800">
+        <div className="flex justify-center mb-12 sticky top-4 z-50">
+          <div className="inline-flex p-1 bg-slate-900/80 backdrop-blur-md rounded-full border border-slate-800 shadow-xl">
             {['About', 'Experience', 'Projects'].map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab.toLowerCase())}
+                onClick={() => {
+                  const element = document.getElementById(tab.toLowerCase());
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab.toLowerCase()
                   ? 'bg-slate-100 text-slate-900 shadow-lg'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
@@ -89,20 +114,10 @@ export default function Home() {
         </div>
 
         {/* Content Area */}
-        <main className="w-full max-w-5xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              {activeTab === 'experience' && <ExpCard />}
-              {activeTab === 'projects' && <Projects />}
-              {activeTab === 'about' && <Contact />}
-            </motion.div>
-          </AnimatePresence>
+        <main className="w-full max-w-5xl mx-auto flex flex-col gap-32 pb-32">
+          <Contact />
+          <ExpCard />
+          <Projects />
         </main>
       </div >
     </>

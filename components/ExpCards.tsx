@@ -17,12 +17,12 @@ import Image from "next/image";
 
 const jobPositions = [
   {
-    timeline: "Oct 2025 - Present",
+    timeline: "Oct. 2025 - Dec. 2025",
     currentPosition: "Software Engineer Intern",
     place: "Eudia",
     previousPositions: [""],
     description:
-      "Building company-wide analytics on LLM and model usage, leveraging Trino, Redis, Apache Iceberg, and Azure Blob Storage to efficiently track user activity and message trends",
+      "Built a scalable customer-facing analytics pipeline using Temporal and Redis, cutting ingestion costs by 90%. Improved React dashboard query latency by 3–5x through optimized Apache Iceberg tables queried via Trino.",
     skills: [
       "Trino",
       "Redis",
@@ -39,7 +39,7 @@ const jobPositions = [
     place: "DECAL Lab, University of California, Davis",
     previousPositions: [""],
     description:
-      "Collaborating with a startup to develop an intelligent assistant and safety app for the outdoors using Flutter. Developing modular RAG pipelines and multi-agent AI architectures implemented with AWS Bedrock. Optimized backend cloud infrastructure by cutting DynamoDB read latency by 90% with Redis caching.",
+      "Collaborated with a startup to develop an intelligent assistant and safety app for the outdoors using Flutter. Developing modular RAG pipelines and multi-agent AI architectures implemented with AWS Bedrock. Optimized backend cloud infrastructure by cutting DynamoDB read latency by 90% with Redis caching.",
     skills: [
       "Flutter",
       "Dart",
@@ -60,7 +60,7 @@ const jobPositions = [
     place: "Centene Corporation",
     previousPositions: [""],
     description:
-      "Spearheading the migration of Go-based microservices to AWS Lambda using Terraform and S3. Enhancing customer-facing front-end UI with React and integrating MongoDB to improve claim data accessibility. Collaborated on optimizing cloud resource usage to improve application performance and reduce costs.",
+      "Spearheaded the migration of Go-based microservices to AWS Lambda using Terraform and S3. Enhanced customer-facing front-end UI with React and integrated MongoDB to improve claim data accessibility. Collaborated on optimizing cloud resource usage to improve application performance and reduce costs.",
     skills: [
       "Go",
       "AWS Lambda",
@@ -112,7 +112,11 @@ const jobPositions = [
 
 export default function ExpCard() {
   return (
-    <section id="experience" className="scroll-mt-16 lg:mt-16">
+    <section id="experience" className="scroll-mt-32 lg:mt-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-slate-200 mb-8 flex items-center">
+        Experience
+        <div className="h-px bg-slate-800 flex-grow ml-6"></div>
+      </h2>
       <StaggerContainer staggerDelay={0.15}>
         {jobPositions.map((job, index) => (
           <StaggerItem key={index}>

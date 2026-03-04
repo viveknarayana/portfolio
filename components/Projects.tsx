@@ -190,7 +190,11 @@ export function ProjectCard({ project }: { project: typeof jobProjects[0] }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="scroll-mt-16 lg:mt-16">
+    <section id="projects" className="scroll-mt-32 lg:mt-16">
+      <h2 className="text-3xl md:text-4xl font-bold text-slate-200 mb-8 flex items-center">
+        Projects
+        <div className="h-px bg-slate-800 flex-grow ml-6"></div>
+      </h2>
       <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {jobProjects.map((project, index) => (
           <StaggerItem
