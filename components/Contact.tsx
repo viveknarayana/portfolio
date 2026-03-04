@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="flex flex-col gap-12 max-w-4xl mx-auto items-center text-center py-12">
+    <section id="about" className="flex flex-col gap-12 max-w-4xl mx-auto items-center justify-center text-center min-h-[80vh] py-12">
       <div className="flex flex-col gap-6 items-center">
         <FadeIn delay={0.1} direction="down">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-200">
