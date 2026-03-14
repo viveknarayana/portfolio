@@ -12,6 +12,21 @@ import StaggerContainer, { StaggerItem } from "./animations/StaggerContainer";
 
 export const jobProjects = [
   {
+    imagePath: "/wave.png",
+    title: "Wave - Kubernetes-Native LLM Inference Gateway",
+    description:
+      "Production-style gateway in front of vLLM: OpenAI-compatible API, tenant-aware routing with KV-pressure affinity and eviction, priority scheduling, conversation-scoped prompt caching (exact + semantic), and Prometheus metrics.",
+    skills: [
+      "Python",
+      "FastAPI",
+      "Kubernetes",
+      "Redis",
+      "vLLM",
+      "Prometheus",
+    ],
+    link: "https://github.com/viveknarayana/wave",
+  },
+  {
     imagePath: "/redian.png",
     title: "Redian - LLM Agent Security Testing Framework",
     description:
