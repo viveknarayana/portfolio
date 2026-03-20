@@ -25,10 +25,19 @@ export const metadata: Metadata = {
     description:
       "Vivek Narayana is a full-stack dev.",
     url: "https://viveknarayana.com",
+    images: [
+      {
+        url: "/main.png",
+        width: 1200,
+        height: 630,
+        alt: "Vivek Narayana Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Vivek Narayana",
+    images: ["/main.png"],
   },
 };
 
