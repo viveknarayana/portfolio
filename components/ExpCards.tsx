@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 
 import Image from "next/image";
 
-const jobPositions = [
+export const jobPositions = [
   {
     timeline: "Oct. 2025 - Dec. 2025",
     currentPosition: "Software Engineer Intern",

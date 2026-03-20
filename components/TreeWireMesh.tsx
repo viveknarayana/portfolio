@@ -6,9 +6,10 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 interface TreeWireMeshProps {
     className?: string;
     isBackground?: boolean;
+    lowDetail?: boolean;
 }
 
-const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackground = true }) => {
+const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackground = true, lowDetail = false }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
     const sceneRef = useRef<THREE.Scene | null>(null);
@@ -45,10 +46,10 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackgroun
         const renderer = new THREE.WebGLRenderer({
             canvas: canvasRef.current,
             alpha: !isBackground,
-            antialias: true
+            antialias: !lowDetail
         });
         renderer.setSize(width, height);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, lowDetail ? 1 : 2));
         rendererRef.current = renderer;
 
         // Create tree group
@@ -104,7 +105,7 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackgroun
             undefined,
             (error) => {
                 console.warn('Could not load tree model, using simple wireframe tree');
-                const trunk = createSimpleTree();
+                const trunk = createSimpleTree(lowDetail);
                 treeGroup.add(trunk);
                 scene.add(treeGroup);
             }
@@ -204,13 +205,13 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackgroun
             cameraRef.current = null;
             treeGroupRef.current = null;
         };
-    }, [isMounted, isBackground]);
+    }, [isMounted, isBackground, lowDetail]);
 
     // Helper function to create simple tree
-    const createSimpleTree = (): THREE.Group => {
+    const createSimpleTree = (minimal = false): THREE.Group => {
         const group = new THREE.Group();
         // Trunk
-        const trunkGeometry = new THREE.CylinderGeometry(0.25, 0.35, 5, 16);
+        const trunkGeometry = new THREE.CylinderGeometry(0.25, 0.35, 5, minimal ? 6 : 16);
         const trunkMaterial = new THREE.MeshBasicMaterial({
             color: 0x888888,
             wireframe: true,
@@ -221,9 +222,10 @@ const TreeWireMesh: React.FC<TreeWireMeshProps> = ({ className = "", isBackgroun
         trunk.position.y = 0.5;
         group.add(trunk);
         // Branches
-        for (let i = 0; i < 4; i++) {
-            const angle = (i / 4) * Math.PI * 2;
-            const branchGeometry = new THREE.CylinderGeometry(0.1, 0.15, 2, 8);
+        const branchCount = minimal ? 3 : 4;
+        for (let i = 0; i < branchCount; i++) {
+            const angle = (i / branchCount) * Math.PI * 2;
+            const branchGeometry = new THREE.CylinderGeometry(0.1, 0.15, 2, minimal ? 5 : 8);
             const branchMaterial = new THREE.MeshBasicMaterial({
                 color: 0xaaaaaa,
                 wireframe: true,

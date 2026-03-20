@@ -4,8 +4,9 @@ import { usePathname } from "next/navigation";
 export default function PageWrapper({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const isLandingPage = pathname?.startsWith("/landing");
+    const isRevampPreview = pathname?.startsWith("/test");
 
-    if (isLandingPage) {
+    if (isLandingPage || isRevampPreview) {
         return <>{children}</>;
     }
 

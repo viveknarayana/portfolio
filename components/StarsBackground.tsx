@@ -38,7 +38,7 @@ const StarsBackground: React.FC = () => {
     for (let z = -1000; z < 1000; z += 30) {  // Adjusted spacing
       const geometry = new THREE.SphereGeometry(0.5, 32, 32);
       const material = new THREE.MeshBasicMaterial({
-        color: new THREE.Color().setHSL(0, 0, Math.random() * 0.5 + 0.5), // White/Gray stars
+        color: new THREE.Color().setHSL(0.14, 1, Math.random() * 0.15 + 0.55), // Bright yellow stars
         transparent: true,
         opacity: Math.random() * 0.3 + 0.8  // High opacity for professional look
       });
