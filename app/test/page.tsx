@@ -142,11 +142,7 @@ export default function TestRevampPage() {
             "radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 24%, rgba(255,255,255,0.015) 42%, rgba(255,255,255,0) 62%)",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-[-20vh] h-[70vh] [perspective:1100px]">
-        <div className="absolute inset-0 origin-bottom [transform:rotateX(67deg)_scale(1.35)] opacity-40 [background-image:linear-gradient(to_right,rgba(255,255,255,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:58px_58px]" />
-      </div>
+      <div className="pointer-events-none fixed inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:72px_72px]" />
 
       <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-6 py-16 md:px-12">
         <ScrambleHeroName text="VIVEK NARAYANA" />
@@ -280,7 +276,7 @@ export default function TestRevampPage() {
                   src={project.imagePath}
                   alt={`Screenshot of ${project.title}`}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover"
                 />
               </div>
               <div className="flex w-full items-center justify-between gap-3 text-left">
@@ -306,6 +302,15 @@ export default function TestRevampPage() {
           ))}
         </div>
       </section>
+
+      <footer className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-12 md:px-12">
+        <a
+          href="/old"
+          className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition-colors hover:text-zinc-300"
+        >
+          view legacy site <ArrowUpRight className="h-3 w-3" />
+        </a>
+      </footer>
     </main>
   );
 }
