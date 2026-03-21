@@ -303,14 +303,6 @@ export default function TestRevampPage() {
         </div>
       </section>
 
-      <footer className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-12 md:px-12">
-        <a
-          href="/old"
-          className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-zinc-500 transition-colors hover:text-zinc-300"
-        >
-          view legacy site <ArrowUpRight className="h-3 w-3" />
-        </a>
-      </footer>
     </main>
   );
 }
