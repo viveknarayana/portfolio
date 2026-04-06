@@ -118,17 +118,22 @@ function ScrambleHeroName({ text }: { text: string }) {
 export default function TestRevampPage() {
   const auraRef = useRef<HTMLDivElement>(null);
   const [openExperience, setOpenExperience] = useState<string | null>(null);
+  const [isAuraActive, setIsAuraActive] = useState(false);
 
   useEffect(() => {
     const updateAuraPosition = (e: PointerEvent) => {
       if (!auraRef.current) return;
       auraRef.current.style.setProperty("--mouse-x", `${e.clientX}px`);
       auraRef.current.style.setProperty("--mouse-y", `${e.clientY}px`);
+      if (!isAuraActive) {
+        window.requestAnimationFrame(() => setIsAuraActive(true));
+      }
     };
-
     window.addEventListener("pointermove", updateAuraPosition);
-    return () => window.removeEventListener("pointermove", updateAuraPosition);
-  }, []);
+    return () => {
+      window.removeEventListener("pointermove", updateAuraPosition);
+    };
+  }, [isAuraActive]);
 
   return (
     <main
@@ -136,7 +141,7 @@ export default function TestRevampPage() {
     >
       <div
         ref={auraRef}
-        className="fixed inset-0 pointer-events-none z-0"
+        className={`fixed inset-0 pointer-events-none z-0 transition-opacity duration-[5000ms] ease-out ${isAuraActive ? "opacity-100" : "opacity-0"}`}
         style={{
           backgroundImage:
             "radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 24%, rgba(255,255,255,0.015) 42%, rgba(255,255,255,0) 62%)",

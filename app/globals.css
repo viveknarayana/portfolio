@@ -5,6 +5,8 @@
 @layer components {
   .mouse-aura {
     @apply fixed inset-0 pointer-events-none;
+    opacity: 0;
+    transition: opacity 5000ms ease-out;
     background-image: radial-gradient(circle at var(--mouse-x) var(--mouse-y),
         rgba(59, 130, 246, 0.12) 0%,
         rgba(59, 130, 246, 0.06) 30%,
@@ -17,6 +19,10 @@
           rgba(59, 130, 246, 0.06) 30%,
           rgba(59, 130, 246, 0) 50%);
     }
+  }
+  
+  .mouse-aura.active {
+    opacity: 1;
   }
 }
 
