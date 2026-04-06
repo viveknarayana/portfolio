@@ -15,7 +15,7 @@ export const jobProjects = [
     imagePath: "/wave.png",
     title: "Wave - Kubernetes-Native LLM Inference Gateway",
     description:
-      "FastAPI gateway in front of vLLM with an OpenAI-compatible chat API and streaming. Gateway-side priority batching (short windows, premium first; each call is still a worker request—vLLM does GPU continuous batching internally), KV-cache-aware routing with optional Redis affinity, eviction and reroute under pressure, conversation-scoped exact and semantic prompt caching, in-memory tenant model/context limits, in-process SLO-style admission (429 on free tier when guards trip), Prometheus /metrics, and Kubernetes manifests with CPU-based HPA (metrics-server in cluster).",
+      "Built a FastAPI gateway for vLLM with OpenAI compatible chat and streaming APIs. Added smart request routing, caching, rate limits, Prometheus metrics, and Kubernetes autoscaling support.",
     skills: [
       "Python",
       "FastAPI",
