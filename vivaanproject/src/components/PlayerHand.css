@@ -1,0 +1,72 @@
+.player-hand {
+  margin: 1.5rem 0;
+}
+
+.player-hand .hand-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.player-hand .cards-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.player-hand .card {
+  flex: 1;
+  min-width: 120px;
+  padding: 1.5rem 1rem;
+  background: #ffffff;
+  border: 3px solid #94a3b8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.player-hand .card:hover:not(.disabled) {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+  border-color: #4f46e5;
+}
+
+.player-hand .card.selected {
+  border-color: #4f46e5;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(124, 58, 237, 0.12) 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+}
+
+.player-hand .card.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.player-hand .card-icon {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4338ca;
+  line-height: 1;
+}
+
+.player-hand .card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+}
+
+.player-hand .card.selected .card-icon {
+  color: #3730a3;
+}
+
+.player-hand .card.selected .card-name {
+  color: #312e81;
+}

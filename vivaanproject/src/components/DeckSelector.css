@@ -1,0 +1,98 @@
+.deck-selector {
+  margin: 1.5rem 0;
+}
+
+.deck-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.deck-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.deck-button {
+  flex: 1;
+  padding: 1.5rem;
+  border: 3px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.deck-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.deck-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.deck-low {
+  border-color: #4ecdc4;
+  color: #4ecdc4;
+}
+
+.deck-low:hover:not(:disabled) {
+  background: #4ecdc415;
+  border-color: #4ecdc4;
+}
+
+.deck-high {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+.deck-high:hover:not(:disabled) {
+  background: #ff6b6b15;
+  border-color: #ff6b6b;
+}
+
+.deck-combined {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.deck-combined:hover:not(:disabled) {
+  background: #667eea15;
+  border-color: #667eea;
+}
+
+.deck-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.deck-range {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.drawn-numbers {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.drawn-numbers p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.drawn-numbers strong {
+  color: #667eea;
+}

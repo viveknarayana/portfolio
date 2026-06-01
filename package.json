@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "dev:vivaanproject": "cd vivaanproject && npm run dev",
+    "build:vivaanproject": "cd vivaanproject && npm ci && npm run build",
+    "build": "npm run build:vivaanproject && next build",
     "start": "next start",
     "lint": "next lint"
   },
