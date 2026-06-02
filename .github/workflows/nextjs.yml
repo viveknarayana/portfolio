@@ -74,6 +74,9 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build Riemann Wars frontend
+        env:
+          VITE_API_BASE_URL: https://vivaanproject-production.up.railway.app/api
+          VITE_WS_BASE_URL: wss://vivaanproject-production.up.railway.app
         run: npm run build:vivaanproject
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
