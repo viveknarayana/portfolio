@@ -17,12 +17,12 @@ import Image from "next/image";
 
 export const jobPositions = [
   {
-    timeline: "Incoming",
+    timeline: "June 2026 – Sep. 2026",
     currentPosition: "Software Engineering Intern",
-    place: "Oracle",
+    place: "Oracle OCI",
     previousPositions: [""],
     description:
-      "Incoming intern working on LLM harness infrastructure on Kubernetes and AI agents that help debug cluster issues.",
+      "Worked on LLM harness infrastructure on Kubernetes and AI agents that help debug cluster issues.",
     skills: [
       "Kubernetes",
       "LLM Harness",
