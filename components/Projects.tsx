@@ -12,6 +12,21 @@ import StaggerContainer, { StaggerItem } from "./animations/StaggerContainer";
 
 export const jobProjects = [
   {
+    imagePath: "/rune.png",
+    title: "Rune - Talk to a live AWS architecture diagram",
+    description:
+      "Native desktop HUD that turns plain English into an editable system design. Jev classifies the graph, hangs AWS services onto the right path, and follow-up prompts overlay cache, replicas, queues, and workers without wiping the diagram. Built with Tauri, React, and the official AWS architecture icons.",
+    skills: [
+      "TypeScript",
+      "React",
+      "Tauri",
+      "Jev",
+      "AWS",
+      "Matter.js",
+    ],
+    link: "https://github.com/viveknarayana/Rune",
+  },
+  {
     imagePath: "/wave.png",
     title: "Wave - Kubernetes-Native LLM Inference Gateway",
     description:
