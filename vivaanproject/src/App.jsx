@@ -25,7 +25,7 @@ function App() {
       }
     } catch (err) {
       console.error('Error creating game:', err);
-      setError('Failed to connect to server. Make sure the backend is running on port 8000.');
+      setError('Failed to connect to the game server. Please try again in a moment.');
     } finally {
       setLoading(false);
     }
